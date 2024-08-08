@@ -1,0 +1,56 @@
+/* CSS Incio */
+
+#inicio{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  h2 {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    font-size: larger;
+    color: white;
+    top: 2vw;
+  }
+}
+
+/* Video */
+video{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+
+/* Mision */
+.mision{
+  color: white;
+  display:inline-block ;
+  text-align: justify;
+  padding-left: 5vw;
+  margin-right: 55vw;
+  position: relative;
+  top: 5vw;
+  left: auto;
+  h3{
+      text-align: center;
+  }
+}
+
+/* vison */
+.vision{
+  color: white;
+  display: inline-block;
+  text-align: justify;
+  padding-right: 2vw ;
+  margin-left: 55vw;
+  position: relative;
+  top: 8vw;
+  left: auto;
+  h3{
+      text-align: center;
+  }
+}

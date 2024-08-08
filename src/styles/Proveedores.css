@@ -1,0 +1,129 @@
+/* Css Proveedores */
+
+#proveedores{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Ingresar Proveedor*/
+.contenedor-agregar{
+
+  background-color: rgba(47, 79, 79, 0.9);
+  width: 45%;
+}
+
+/* Titulo agregar */
+.titulo-proveedor{
+  font-size: 1rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Formulario */
+.form-proveedores{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  font-weight: 700;
+  min-height: 400px;
+  margin: 1rem;
+  label{
+    margin: 0px 5px;
+  }
+  input{
+    padding: 5px;
+    margin: 5px;
+    height: 30px;
+    width: 170px;
+    border-radius: 10px;
+    border: none;
+  }
+  textarea{
+    width: 180px;
+    height: 50px;
+  }
+}
+
+/* Botones */
+.conte-boton{
+  display: flex;
+  justify-content:space-around;
+  /* margin-top: 1rem; */
+  width: 60%;
+}
+
+
+/* LISTADO de Proveedores */
+.contenedor-listado{
+  background-color: rgba(47, 79, 79, 0.9);
+  width: 55%;
+}
+
+/* Titulo y logo */
+.contenedor-img-titulo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 2rem;
+  width: 100%;
+  h1{
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  img{
+    width: 60px;
+  }
+  
+}
+
+/* Contenedor proveedores */
+.contenedor-lista-proveedores{
+  margin: 1rem;
+  height: 70%;
+  border-radius: 15px;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Lista de proveedores */
+.proveedor-item{
+  width: 95%;
+  margin: 5px;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  background-color: darkgrey;
+  p{
+    font-size: 1rem;
+    margin: 2px;
+    margin-left: 1rem;
+  }
+}
+.proveedor-item:hover{
+  background-color: gray;
+  /* cursor: pointer; */
+}
+
+.contenedor-img-eliminar{
+  display:flex;
+  justify-content: center;
+  /* border: 1px solid black; */
+  img{
+    width: 35px;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  img:hover{
+    background-color: chocolate;
+  }
+}

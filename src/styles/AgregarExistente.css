@@ -1,0 +1,85 @@
+/* Css */
+
+/* Seccion general */
+#registro-entrada-existente{
+  background-image: url("../img/agregar_existente.jpg");
+  background-color: transparent;
+  background-position: center center;
+  background-size:cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+/* Formulario BUSCAR */ 
+.form-buscar{
+  margin-top: 1rem;
+  font-weight: bold;
+  padding: 3px;
+  background-color:rgba(240, 255, 255, 0.666);
+  border-radius: 10px;
+  label{
+    margin: 4px;
+  }
+  input{ 
+    padding: 5px;
+    width: 200px;
+  }
+}
+
+/* Boton buscar producto */
+.boton-search{
+  margin: 3px;
+  padding: 5px;
+  font-size: 1rem;
+  font-weight: 500;
+  border-radius: 8px;
+  border: none;
+  background-color: darkgreen;
+  color: whitesmoke;
+  cursor: pointer;
+}
+.boton-search:hover{
+  background-color: whitesmoke;
+  color: darkgreen;
+}
+
+
+/* Formulario Ingresar producto*/
+.form-entrada-existente{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+  background-color:rgba(240, 255, 255, 0.666);
+  max-width: 750px;
+  min-width: 500px;
+  min-height: 450px;
+  border-radius: 10px;
+  fieldset{
+    padding: 0.6rem 3rem;
+    margin: 1rem;
+    border-radius: 10px;
+  } 
+  label{
+    margin: 25px;
+    font-weight: bold;
+  }
+  input{
+    height: 30px; 
+    border-radius: 5px;
+    padding: 4px;
+    margin: 10px 0px;
+    /* border: none; */
+  }
+  textarea{
+    width: 180px;
+    height: 40px;
+  }
+}

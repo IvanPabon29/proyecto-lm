@@ -1,0 +1,10 @@
+/* Css 404 */
+
+#not-found{
+  width: 100%;
+  height: 100vh;
+  background-color:whitesmoke ;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
