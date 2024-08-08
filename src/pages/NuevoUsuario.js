@@ -107,7 +107,6 @@ function NuevoUsuario() {
             required
           >
             <option value="">Seleccione Rol:</option>
-            <option value="Admin">Admin</option>
             <option value="Ventas">Ventas</option>
             <option value="Almacen">Almacén</option>
           </select>
