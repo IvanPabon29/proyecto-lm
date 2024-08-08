@@ -8,7 +8,7 @@ function MiPerfil() {
 
   // Si el usuario no está autenticado, puedes redirigirlo o mostrar un mensaje de error
   if (!user) {
-    return <div>No has iniciado sesión</div>; //!Agregar clase al div para css.
+    return <div className="no-sesion">No has iniciado sesión</div>; 
   }
 
   return (
