@@ -35,8 +35,8 @@ function App() {
                     <Route path='/home' element={<Home />} />
                     <Route path='/mi-perfil' element={<MiPerfil />} />
                     <Route path='/nuevo-usuario' element={<NuevoUsuario />} />
-                    <Route path='/registro-entrada/agregar-nuevo' element={<AgregarNuevo />} />
-                    <Route path='/registro-entrada/agregar-existente' element={<AgregarExistente />} />
+                    <Route path='/registro-entrada/nuevo-producto' element={<AgregarNuevo />} />
+                    <Route path='/registro-entrada/producto-existente' element={<AgregarExistente />} />
                     <Route path='/productos' element={<Productos />} />
                     <Route path='/proveedores' element={<Proveedores />} />
                     <Route path='/registros' element={<Registros />} />
