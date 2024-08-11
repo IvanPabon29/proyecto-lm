@@ -73,14 +73,14 @@ function Encabezado() {
             </Link>
             <ul className="menu-entrada">
               <li>
-                <Link className="link" to="/registro-entrada/agregar-nuevo">
+                <Link className="link" to="/registro-entrada/nuevo-producto">
                   <strong>
                     <small>Agregar Nuevo</small>
                   </strong>
                 </Link>
               </li>
               <li>
-                <Link className="link" to="/registro-entrada/agregar-existente">
+                <Link className="link" to="/registro-entrada/producto-existente">
                   <strong>
                     <small>Agregar Existente</small>
                   </strong>
