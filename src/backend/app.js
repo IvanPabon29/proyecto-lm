@@ -6,6 +6,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user');
 const proveedoresRoutes = require('./routes/proveedores'); 
+const productoRoutes = require('./routes/producto');
 
 
 // creamos el servidor con express
@@ -21,12 +22,14 @@ app.use((req, res, next) => {
 });
 
 
-// Rutas de los usuarios
+// Rutas usuarios
 app.use('/api', userRoutes);
 
 // Ruta Proveedores
 app.use('/api', proveedoresRoutes); 
 
+// Ruta Producto
+app.use('/api', productoRoutes);
 
 
 // Puerto y mensaje
