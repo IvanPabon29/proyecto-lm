@@ -2,19 +2,23 @@ import "../styles/Proveedores.css";
 import LogoProveedores from "../img/logo-proveedor.png";
 import Eliminar from "../img/eliminar.png";
 import { useState, useEffect } from "react";
-import { registrarProveedor, obtenerProveedores, eliminarProveedor } from "../api/proveedoresApi";
+import {
+  registrarProveedor,
+  obtenerProveedores,
+  eliminarProveedor,
+} from "../api/proveedoresApi";
 
 function Proveedores() {
   const [proveedores, setProveedores] = useState([]);
   // Manejedo de los datos del formulario.
   const [formDatos, setFormDatos] = useState({
-    idProveedor: '',
-    nombre: '',
-    apellido: '',
-    correo: '',
-    telefono: '',
-    direccion: '',
-    productos: ''
+    idProveedor: "",
+    nombre: "",
+    apellido: "",
+    correo: "",
+    telefono: "",
+    direccion: "",
+    productos: "",
   });
 
   useEffect(() => {
@@ -32,7 +36,7 @@ function Proveedores() {
     const { name, value } = e.target;
     setFormDatos({
       ...formDatos,
-      [name]: value
+      [name]: value,
     });
   };
 
@@ -46,13 +50,13 @@ function Proveedores() {
       setProveedores(data);
       // Limpiar el formulario
       setFormDatos({
-        idProveedor: '',
-        nombre: '',
-        apellido: '',
-        correo: '',
-        telefono: '',
-        direccion: '',
-        productos: ''
+        idProveedor: "",
+        nombre: "",
+        apellido: "",
+        correo: "",
+        telefono: "",
+        direccion: "",
+        productos: "",
       });
     } catch (error) {
       console.error("Error al registrar el proveedor:", error);
@@ -62,7 +66,9 @@ function Proveedores() {
 
   // Eliminar proveedores
   const handleEliminar = async (idProveedor) => {
-    const confirmar = window.confirm(`¿Estás seguro de que deseas eliminar este proveedor ?`);
+    const confirmar = window.confirm(
+      `¿Estás seguro de que deseas eliminar este proveedor ? `
+    );
     if (confirmar) {
       try {
         await eliminarProveedor(idProveedor);
@@ -84,30 +90,90 @@ function Proveedores() {
         <form className="form-proveedores" onSubmit={handleSubmit}>
           <div className="div-1">
             <label htmlFor="proveedor">Id Proveedor:</label>
-            <input type="number" id="proveedor" inputMode="numeric" placeholder="Ingrese el Id" name="idProveedor" value={formDatos.idProveedor} onChange={handleChange} required />
+            <input
+              type="number"
+              id="proveedor"
+              inputMode="numeric"
+              placeholder="Ingrese el Id"
+              name="idProveedor"
+              value={formDatos.idProveedor}
+              onChange={handleChange}
+              required
+            />
             <label htmlFor="nombre">Nombre:</label>
-            <input type="text" id="nombre" placeholder="Nombre" name="nombre" value={formDatos.nombre} onChange={handleChange} required />
+            <input
+              type="text"
+              id="nombre"
+              placeholder="Nombre"
+              name="nombre"
+              value={formDatos.nombre}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="div-2">
             <label htmlFor="apellido">Apellido:</label>
-            <input type="text" id="apellido" placeholder="Apellido" name="apellido" value={formDatos.apellido} onChange={handleChange} required />
+            <input
+              type="text"
+              id="apellido"
+              placeholder="Apellido"
+              name="apellido"
+              value={formDatos.apellido}
+              onChange={handleChange}
+              required
+            />
             <label htmlFor="correo">Correo:</label>
-            <input type="email" id="correo" placeholder="@proveedor.com" name="correo" value={formDatos.correo} onChange={handleChange} required />
+            <input
+              type="email"
+              id="correo"
+              placeholder="@proveedor.com"
+              name="correo"
+              value={formDatos.correo}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="div-3">
             <label htmlFor="celular">Telefono:</label>
-            <input type="number" id="celular" placeholder="Telefono" name="telefono" value={formDatos.telefono} onChange={handleChange} required />
+            <input
+              type="number"
+              id="celular"
+              placeholder="Telefono"
+              name="telefono"
+              value={formDatos.telefono}
+              onChange={handleChange}
+              required
+            />
             <label htmlFor="direccion">Direccion:</label>
-            <input type="text" id="direccion" placeholder="Direccion" name="direccion" value={formDatos.direccion} onChange={handleChange} required />
+            <input
+              type="text"
+              id="direccion"
+              placeholder="Direccion"
+              name="direccion"
+              value={formDatos.direccion}
+              onChange={handleChange}
+              required
+            />
           </div>
           <div className="div-4">
             <label htmlFor="p-suministra">Productos:</label>
-            <textarea id="p-suministra" placeholder="Productos que suministra" name="productos" value={formDatos.productos} onChange={handleChange} required />
+            <textarea
+              id="p-suministra"
+              placeholder="Productos que suministra"
+              name="productos"
+              value={formDatos.productos}
+              onChange={handleChange}
+              required
+            />
           </div>
           {/* Botones */}
           <div className="conte-boton">
-            <button type="reset" className="botones-entrada boton-reset">Limpiar</button>
-            <button type="submit" className="botones-entrada boton-submit">Agregar</button>
+            <button type="reset" className="botones-entrada boton-reset">
+              Limpiar
+            </button>
+            <button type="submit" className="botones-entrada boton-submit">
+              Agregar
+            </button>
           </div>
         </form>
       </div>
@@ -116,7 +182,11 @@ function Proveedores() {
         {/* Titulo y imagen */}
         <div className="contenedor-img-titulo">
           <h1>Proveedores</h1>
-          <img src={LogoProveedores} alt="Logo-proveedores" title="LogoProveedores" />
+          <img
+            src={LogoProveedores}
+            alt="Logo-proveedores"
+            title="LogoProveedores"
+          />
         </div>
 
         {/* Contenedor donde va los proveedores agregados */}
@@ -124,14 +194,32 @@ function Proveedores() {
           {proveedores.map((proveedor) => (
             <article key={proveedor.id_proveedor} className="proveedor-item">
               {/* <p>Id: {proveedor.id_proveedor}</p> */}
-              <p><strong>Nombre:</strong> {proveedor.nombre}</p>
-              <p><strong>Apellido:</strong> {proveedor.apellido}</p>
-              <p><strong>Correo:</strong> {proveedor.correo}</p>
-              <p><strong>Telefono:</strong> {proveedor.telefono}</p>
-              <p><strong>Direccion:</strong> {proveedor.direccion}</p>
-              <p><strong>Productos Suministra:</strong> {proveedor.productos_suministra}</p>
+              <p>
+                <strong>Nombre:</strong> {proveedor.nombre}
+              </p>
+              <p>
+                <strong>Apellido:</strong> {proveedor.apellido}
+              </p>
+              <p>
+                <strong>Correo:</strong> {proveedor.correo}
+              </p>
+              <p>
+                <strong>Telefono:</strong> {proveedor.telefono}
+              </p>
+              <p>
+                <strong>Direccion:</strong> {proveedor.direccion}
+              </p>
+              <p>
+                <strong>Productos Suministra:</strong>{" "}
+                {proveedor.productos_suministra}
+              </p>
               <div className="contenedor-img-eliminar">
-                <img src={Eliminar} alt="Img-Eliminar" onClick={() => handleEliminar(proveedor.id_proveedor)} title="Eliminar" />
+                <img
+                  src={Eliminar}
+                  alt="Img-Eliminar"
+                  onClick={() => handleEliminar(proveedor.id_proveedor)}
+                  title="Eliminar"
+                />
               </div>
             </article>
           ))}
