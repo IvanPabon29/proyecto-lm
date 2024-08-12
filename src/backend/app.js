@@ -15,6 +15,9 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+// Servir la carpeta uploads como archivos estáticos
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 // Verificar de middleware 
 app.use((req, res, next) => {
   console.log(`Request URL: ${req.url}, Method: ${req.method}`);
