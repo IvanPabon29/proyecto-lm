@@ -35,13 +35,14 @@ function Productos() {
       {/* Aqui es donde va todos los productos agregados */}
       <div className="productos-lista">
         {productos.map(producto => (
-          <div key={producto.id_producto} className="producto-item">
-            <img src={producto.imagen} alt={producto.nombre} />
+          <article key={producto.id_producto} className="producto-item">
+            <img src={`http://localhost:3001${producto.imagen}`} alt={producto.nombre} />
             <h4>{producto.nombre}</h4>
-            <p>{producto.descripcion}</p>
-            <p>Precio: {producto.precio}</p>
-            <p>Cantidad: {producto.cantidad}</p>
-          </div>
+            <p><strong>Descripcion:</strong> {producto.descripcion}</p>
+            <p><strong>Precio: $</strong>{producto.precio}</p>
+            <p><strong>Cantidad:</strong> {producto.cantidad}</p>
+            <button title="Agregar Al Carrito"><strong>Agregar Al Carrito</strong></button>
+          </article>
         ))}
       </div>
       
