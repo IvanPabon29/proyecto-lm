@@ -1,6 +1,6 @@
 /* CSS Footer */
 
-footer{
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -10,25 +10,72 @@ footer{
   background-color: rgb(192, 192, 192);
 }
 
-/* Div Informacion*/
-.contenedor-informacion{
+/* Div Información */
+.contenedor-informacion {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 }
 
 /* Redes sociales */
-.contacto{
+.contacto {
   margin: 5px;
 } 
 
-.img-redes{
+.img-redes {
   width: 30px;
   border-radius: 20%;
+  transition: transform 0.2s ease-in-out;
 }
+
 /* Hover */
-.img-redes:hover{
+.img-redes:hover {
+  transform: scale(1.2);
   background-color: orange;
+  border-radius: 10px;
+}
+
+/* Responsividad */
+@media (max-width: 750px) {
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contenedor-informacion {
+    margin: 10px 0;
+  }
+
+  .contacto {
+    margin-bottom: 10px;
+  }
+
+  .licencia, .version {
+    margin: 0.4rem;
+    font-size: 1rem;
+  }
+
+  .acerca, .desarrollador {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    padding: 10px;
+  }
+
+  .img-redes {
+    width: 25px;
+  }
+
+  .licencia, .version {
+    font-size: 0.8rem;
+  }
+
+  .acerca, .desarrollador {
+    font-size: 0.75rem;
+  }
 }
