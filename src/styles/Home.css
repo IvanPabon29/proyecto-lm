@@ -1,56 +1,101 @@
-/* CSS Incio */
-
-#inicio{
+/* Estilos principales para la sección de inicio */
+#inicio {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  h2 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    font-size: larger;
-    color: white;
-    top: 2vw;
-  }
 }
 
-/* Video */
-video{
+/* Overlay: Aseguramos que cubra todo el área y que el contenido esté centrado */
+.overlay {
+  background-color: rgba(0, 0, 0, 0.6);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
-  object-fit: cover;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-/* Mision */
-.mision{
-  color: white;
-  display:inline-block ;
-  text-align: justify;
-  padding-left: 5vw;
-  margin-right: 55vw;
+/* Video: Cubre toda la pantalla */
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit:cover;
+}
+
+/* Contenido: Asegura que el contenido esté centrado y sea responsive */
+.contenido {
   position: relative;
-  top: 5vw;
-  left: auto;
-  h3{
-      text-align: center;
+  z-index: 1;
+  text-align: center;
+  color: white;
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+/* Título */
+h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Misión y Visión*/
+.mision,
+.vision {
+  margin-bottom: 2rem;
+}
+
+.mision h3,
+.vision h3 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.mision p,
+.vision p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+
+/* Estilos Responsive */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  .mision h3,
+  .vision h3 {
+    font-size: 1.5rem;
+  }
+
+  .mision p,
+  .vision p {
+    font-size: 1rem;
   }
 }
 
-/* vison */
-.vision{
-  color: white;
-  display: inline-block;
-  text-align: justify;
-  padding-right: 2vw ;
-  margin-left: 55vw;
-  position: relative;
-  top: 8vw;
-  left: auto;
-  h3{
-      text-align: center;
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .mision h3,
+  .vision h3 {
+    font-size: 1.25rem;
+  }
+
+  .mision p,
+  .vision p {
+    font-size: 0.9rem;
   }
 }
