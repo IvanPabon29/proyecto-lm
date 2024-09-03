@@ -11,5 +11,9 @@ router.post('/login', userController.login);
 // Ruta registrar usuarios.
 router.post('/nuevo-usuario', userController.registroUsuario);
 
+// Ruta para modificar el perfil del usuario
+router.put('/mi-perfil/modificar-perfil', userController.modificarPerfil);
+
+
 module.exports = router; 
  
