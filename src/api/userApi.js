@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const API_URL = 'http://localhost:3001/api';
 
-//login
+// Función para iniciar sesión
 export const loginUsuario = async (username, password) => {
   try {
     const response = await axios.post(`${API_URL}/login`, {
@@ -18,7 +18,7 @@ export const loginUsuario = async (username, password) => {
   }
 };
  
-// Registro usuario
+// Función para registrar un nuevo usuario
 export const registrarUsuario = async (formDatos) => {
   try {
     const response = await axios.post(`${API_URL}/nuevo-usuario`, formDatos);
@@ -28,3 +28,12 @@ export const registrarUsuario = async (formDatos) => {
   }
 };
 
+//Función para modificar el perfil del usuario
+export const modificarPerfil = async (formDatos) => {
+  try {
+    const response = await axios.put(`${API_URL}/mi-perfil/modificar-perfil`, formDatos);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.message : error.message);
+  }
+};
