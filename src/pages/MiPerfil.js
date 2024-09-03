@@ -1,6 +1,7 @@
 import "../styles/MiPerfil.css";
 import Imagen from "../img/nuevo-usuario.png";
 import { useUser } from "./userContext";
+import { Link } from "react-router-dom";
 
 function MiPerfil() {
 
@@ -37,7 +38,9 @@ function MiPerfil() {
           Teléfono: <strong>{user.telefono}</strong>
         </p>
         <div className="cont-boton">
-          <button className="button-perfil">Modificar Perfil</button>
+          <Link to="/mi-perfil/modificar-perfil">
+            <button className="button-perfil">Modificar Perfil</button>
+          </Link>
           <button className="button-perfil">Cambiar Contraseña</button>
         </div>
       </div>
