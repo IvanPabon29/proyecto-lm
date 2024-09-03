@@ -12,6 +12,7 @@ import Registros from './pages/Registros';
 import Ventas from './pages/Ventas';
 import NuevoUsuario from './pages/NuevoUsuario';
 import MiPerfil from './pages/MiPerfil';
+import ModificarPerfil from './pages/ModificarPerfil';
 import NotFound from './pages/NotFound';
 import { UserProvider } from "./pages/userContext"; //Para los datos de usuario.
 
@@ -34,6 +35,7 @@ function App() {
                     
                     <Route path='/home' element={<Home />} />
                     <Route path='/mi-perfil' element={<MiPerfil />} />
+                    <Route path='/mi-perfil/modificar-perfil' element={<ModificarPerfil />} />
                     <Route path='/nuevo-usuario' element={<NuevoUsuario />} />
                     <Route path='/registro-entrada/nuevo-producto' element={<AgregarNuevo />} />
                     <Route path='/registro-entrada/producto-existente' element={<AgregarExistente />} />
