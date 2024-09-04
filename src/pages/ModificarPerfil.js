@@ -15,9 +15,11 @@ function ModificarPerfil() {
   // Estado para rastrear solo los campos modificados
   const [modifiedFields, setModifiedFields] = useState({});
 
+  //* Obtener el idUsuario
+  const { user } = useUser();
   useEffect(() => {
-    // Supongamos que obtenemos el idUsuario de alguna manera (localStorage, contexto, etc.)
-    const idUsuario = 11233012; // Reemplaza esto con la lógica real para obtener el ID del usuario actual en sesión
+    // Obtenemos el idUsuario de alguna manera (localStorage, contexto, etc.)
+    const idUsuario = user.id_usuario; 
     setFormData((prevData) => ({ ...prevData, idUsuario }));
   }, []);
 
