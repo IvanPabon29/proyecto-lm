@@ -1,20 +1,19 @@
-//src\pages\userContext.js
+import React, { createContext, useContext, useState, useEffect } from "react";
 
-import { createContext, useContext, useState, useEffect } from 'react';
-
+// Crear el contexto
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
+// Proveedor del contexto
+export function UserProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('user');
+    const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
+  // Efecto para sincronizar los cambios del usuario con localStorage
   useEffect(() => {
     if (user) {
-      localStorage.setItem('user', JSON.stringify(user));
-    } else {
-      localStorage.removeItem('user');
+      localStorage.setItem("user", JSON.stringify(user));
     }
   }, [user]);
 
@@ -23,8 +22,9 @@ export const UserProvider = ({ children }) => {
       {children}
     </UserContext.Provider>
   );
-};
+}
 
-export const useUser = () => {
+// Hook para utilizar el contexto
+export function useUser() {
   return useContext(UserContext);
-};
+}
