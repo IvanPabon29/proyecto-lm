@@ -15,7 +15,7 @@ import MiPerfil from './pages/MiPerfil';
 import ModificarPerfil from './pages/ModificarPerfil';
 import NotFound from './pages/NotFound';
 import { UserProvider } from "./pages/userContext"; //Para los datos de usuario.
-
+import PrivateRoute from './pages/PrivateRoute';
 
 function App() {
   return (
@@ -33,16 +33,16 @@ function App() {
                   <Encabezado />
                   <Routes>
                     
-                    <Route path='/home' element={<Home />} />
-                    <Route path='/mi-perfil' element={<MiPerfil />} />
-                    <Route path='/mi-perfil/modificar-perfil' element={<ModificarPerfil />} />
-                    <Route path='/nuevo-usuario' element={<NuevoUsuario />} />
-                    <Route path='/registro-entrada/nuevo-producto' element={<AgregarNuevo />} />
-                    <Route path='/registro-entrada/producto-existente' element={<AgregarExistente />} />
-                    <Route path='/productos' element={<Productos />} />
-                    <Route path='/proveedores' element={<Proveedores />} />
-                    <Route path='/registros' element={<Registros />} />
-                    <Route path='/ventas' element={<Ventas />} />
+                    <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>} />
+                    <Route path='/mi-perfil' element={<PrivateRoute><MiPerfil /></PrivateRoute>} />
+                    <Route path='/mi-perfil/modificar-perfil' element={<PrivateRoute><ModificarPerfil /></PrivateRoute>} />
+                    <Route path='/nuevo-usuario' element={<PrivateRoute><NuevoUsuario /></PrivateRoute>} />
+                    <Route path='/registro-entrada/nuevo-producto' element={<PrivateRoute><AgregarNuevo /></PrivateRoute>} />
+                    <Route path='/registro-entrada/producto-existente' element={<PrivateRoute><AgregarExistente /></PrivateRoute>} />
+                    <Route path='/productos' element={<PrivateRoute><Productos /></PrivateRoute>} />
+                    <Route path='/proveedores' element={<PrivateRoute><Proveedores /></PrivateRoute>} />
+                    <Route path='/registros' element={<PrivateRoute><Registros /></PrivateRoute>} />
+                    <Route path='/ventas' element={<PrivateRoute><Ventas /></PrivateRoute>} />
                     {/* Componente para cuando no se encuentra la ruta */}
                     <Route path="*" element={<NotFound />} />
 
