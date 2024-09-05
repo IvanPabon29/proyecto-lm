@@ -6,23 +6,30 @@ import avatar from "../img/avatar.png";
 import botonAgregar  from "../img/boton-agregar.png";
 import cerrarSesion from "../img/cerrar-sesion.png";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Cambia useHistory a useNavigate en react-router-dom v6
+import { useUser } from "../pages/userContext"; // Para el manejo del contexto de usuario
 
 function Encabezado() {
-  // Creamos un estado para controlar la visisbilidad del menu
   const [abrir, setAbrir] = useState(false);
+  const { setUser } = useUser(); // Accedemos al contexto del usuario
+  const navigate = useNavigate(); // Para redirigir al login
 
-  // Para abrir y cerrar el menu.
   const toggleMenu = () => {
     setAbrir(!abrir);
   };
-  
+
+  const handleLogout = () => {
+    // Limpiar el localStorage y el estado de usuario
+    localStorage.removeItem("user");
+    setUser(null);
+    
+    // Redirigir al login
+    navigate("/");
+  };
 
   return (
     <header>
       <div className="contenedor-header">
-
-        {/* Aqui va el boton de menu del perfil */}
         <div className="contenedor-img-usuario">
           <img
             src={Usuario}
@@ -31,26 +38,31 @@ function Encabezado() {
             alt="Img-usuario"
             onClick={toggleMenu}
           />
-          
-          {/* Aqui cuando se de click se llama la funcion de abrir el menu*/}
           {abrir && (
             <div className="menu-perfil">
               <ul>
                 <li>
-                  <Link className="link" to="/mi-perfil"><img src={avatar} className="avatar-perfil" alt="Perfil" title="Mi Perfil" /> Mi Perfil</Link>
+                  <Link className="link" to="/mi-perfil">
+                    <img src={avatar} className="avatar-perfil" alt="Perfil" title="Mi Perfil" /> Mi Perfil
+                  </Link>
                 </li>
                 <li>
-                  <Link className="link" to="/nuevo-usuario"><img src={botonAgregar} className="boton-agregar" alt="agregar" title="Agregar Usuario" /> Agregar Nuevo Usuario</Link>
+                  <Link className="link" to="/nuevo-usuario">
+                    <img src={botonAgregar} className="boton-agregar" alt="agregar" title="Agregar Usuario" /> Agregar Nuevo Usuario
+                  </Link>
                 </li>
                 <li>
-                  <Link className="link" to="/"><img src={cerrarSesion} className="cerrar-sesion" alt="Cerrar" title="Cerrar sesion" /> Cerrar Sesion</Link>
+                  {/* Botón para cerrar sesión */}
+                  <Link className="link" onClick={handleLogout}>
+                    <img src={cerrarSesion} className="cerrar-sesion" alt="Cerrar" title="Cerrar sesión" /> Cerrar Sesión
+                  </Link> 
                 </li>
               </ul>
             </div>
           )}
         </div>
 
-        {/* Aqui va la imagen con el nombre de la empresa */}
+        {/* Imagen con el nombre de la empresa */}
         <div className="contendor-img-logo">
           <Link to="/home">
             <img
@@ -64,7 +76,7 @@ function Encabezado() {
         </div>
       </div>
 
-      {/* Barra de navegacion */}
+      {/* Barra de navegación */}
       <nav>
         <ul className="nav-menu-horizontal">
           <li>
@@ -88,10 +100,9 @@ function Encabezado() {
               </li>
             </ul>
           </li>
-
           <li>
             <Link className="link" to="/productos">
-              <strong>Productos </strong>
+              <strong>Productos</strong>
             </Link>
           </li>
           <li>
@@ -106,12 +117,7 @@ function Encabezado() {
           </li>
           <li>
             <Link className="link" to="/ventas">
-              <img
-                src={Carrito}
-                className="carrito-logo"
-                title="Ventas"
-                alt="Carrito"
-              />
+              <img src={Carrito} className="carrito-logo" title="Ventas" alt="Carrito" />
             </Link>
           </li>
         </ul>
