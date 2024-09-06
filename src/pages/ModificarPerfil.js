@@ -16,10 +16,10 @@ function ModificarPerfil() {
   const [modifiedFields, setModifiedFields] = useState({});
 
   //* Obtener el idUsuario
-  const { user } = useUser();
+  const { user, setUser } = useUser(); // Obtener setUser para actualizar el contexto
   useEffect(() => {
     // Obtenemos el idUsuario de alguna manera (localStorage, contexto, etc.)
-    const idUsuario = user.id_usuario; 
+    const idUsuario = user.id_usuario;
     setFormData((prevData) => ({ ...prevData, idUsuario }));
   }, []);
 
@@ -48,8 +48,15 @@ function ModificarPerfil() {
         ...modifiedFields,
       });
       alert(response.message);
+
+      //* Actualizar el contexto del usuario con los nuevos datos
+      setUser((prevUser) => ({
+        ...prevUser,
+        ...modifiedFields, // Sobrescribir solo los campos modificados
+      }));
+
       setModifiedFields({}); // Resetear los campos modificados después de la actualización
-      
+
       // Limpiar el formulario después de una actualización exitosa
       setFormData({
         nombre: "",
@@ -58,6 +65,7 @@ function ModificarPerfil() {
         correo: "",
         telefono: "",
       });
+      
     } catch (error) {
       console.error("Error al actualizar el perfil:", error);
       alert("Error al actualizar el perfil");
