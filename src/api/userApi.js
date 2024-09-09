@@ -37,3 +37,18 @@ export const modificarPerfil = async (formDatos) => {
     throw new Error(error.response ? error.response.data.message : error.message);
   }
 };
+
+// Función para modificar la contraseña
+export const modificarContraseña = async (idUsuario, nuevaContraseña, confirmarContraseña) => {
+  try {
+    const response = await axios.post(`${API_URL}/mi-perfil/modificar-clave`, {
+      idUsuario,
+      nuevaContraseña,
+      confirmarContraseña,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.message : error.message); 
+  }
+};
