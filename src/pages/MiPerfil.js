@@ -41,7 +41,9 @@ function MiPerfil() {
           <Link to="/mi-perfil/modificar-perfil">
             <button className="button-perfil">Modificar Perfil</button>
           </Link>
-          <button className="button-perfil">Cambiar Contraseña</button>
+          <Link to="/mi-perfil/modificar-clave">
+            <button className="button-perfil">Cambiar Contraseña</button>
+          </Link>
         </div>
       </div>
     </section>
