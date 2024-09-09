@@ -89,6 +89,39 @@ const userController = {
     });
   },
 
+  // Controlador para cambiar la contraseña
+  modificarContraseña: (req, res) => {
+    const { idUsuario, nuevaContraseña, confirmarContraseña } = req.body;
+  
+    // Verificar que las contraseñas coinciden
+    if (nuevaContraseña !== confirmarContraseña) {
+      return res.status(400).json({ message: "Las contraseñas no coinciden" });
+    }
+  
+    // Encriptar la nueva contraseña
+    bcrypt.hash(nuevaContraseña, 10, (err, hashContraseña) => {
+      if (err) {
+        console.error("Error al encriptar la contraseña:", err);
+        return res.status(500).json({ message: "Error al encriptar la contraseña" });
+      }
+  
+      // Actualizar la contraseña en la base de datos usando callback
+      const query = "UPDATE usuarios SET contraseña = ? WHERE id_usuario = ?";
+      db.query(query, [hashContraseña, idUsuario], (err, result) => {
+        if (err) {
+          console.error("Error al cambiar la contraseña:", err);
+          return res.status(500).json({ message: "Error al cambiar la contraseña" });
+        }
+  
+        if (result.affectedRows === 0) {
+          return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+  
+        res.status(200).json({ message: "Contraseña actualizada correctamente" });
+      });
+    });
+  },
+  
 };
 
 module.exports = userController;
