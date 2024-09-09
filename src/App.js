@@ -13,6 +13,7 @@ import Ventas from './pages/Ventas';
 import NuevoUsuario from './pages/NuevoUsuario';
 import MiPerfil from './pages/MiPerfil';
 import ModificarPerfil from './pages/ModificarPerfil';
+import ModificarContraseña from './pages/ModificarContraseña';
 import NotFound from './pages/NotFound';
 import { UserProvider } from "./pages/userContext"; //Para los datos de usuario.
 import PrivateRoute from './pages/PrivateRoute';
@@ -36,6 +37,7 @@ function App() {
                     <Route path='/home' element={<PrivateRoute><Home /></PrivateRoute>} />
                     <Route path='/mi-perfil' element={<PrivateRoute><MiPerfil /></PrivateRoute>} />
                     <Route path='/mi-perfil/modificar-perfil' element={<PrivateRoute><ModificarPerfil /></PrivateRoute>} />
+                    <Route path='/mi-perfil/modificar-clave' element={<PrivateRoute><ModificarContraseña /></PrivateRoute>} />
                     <Route path='/nuevo-usuario' element={<PrivateRoute><NuevoUsuario /></PrivateRoute>} />
                     <Route path='/registro-entrada/nuevo-producto' element={<PrivateRoute><AgregarNuevo /></PrivateRoute>} />
                     <Route path='/registro-entrada/producto-existente' element={<PrivateRoute><AgregarExistente /></PrivateRoute>} />
