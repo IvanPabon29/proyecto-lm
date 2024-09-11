@@ -2,24 +2,25 @@
 
 .contenedor-header{
   display: flex;  
-  justify-content: center;
+  /* border: 1px solid black; */
+  flex-direction: row-reverse;
+  justify-content:space-between;
   align-items: center;
 }
 
 /* Contenedor Usuario*/
 .contenedor-img-usuario{
   position: relative;      /* Esto no responsive MEJORAR */
-  right: 31rem;
+  margin-right: 1.3rem;
   cursor: pointer;
 }
 .img-perfil{
   padding: 5px;
   width: 40px;
   border-radius: 15%;
-  background-color: whitesmoke;
 }
 .img-perfil:hover{
-  background-color: grey;
+  background-color: gray;
 }
 
 
@@ -27,7 +28,7 @@
 .menu-perfil{
   position: absolute;
   top: 45px;
-  left: 1px;
+  left: -11.2rem;
   padding: 3px 5px;
   background-color: whitesmoke;
   border-radius: 7px;
@@ -66,19 +67,26 @@
 
 
 /* Contenedor Logo */
-.contendor-img-logo{
+.contenedor-img-logo{
   display: flex;
   justify-content: center;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-top: 10px;
-  .titulo{
-    font-size: 1.2rem;
-    user-select: none;  
-  }
+  margin-top: 8px;
+  margin-left: 1rem;
+  a{
+    text-decoration:none;
+  }  
+}
+.titulo-sistema{
+  font-size: 1.2rem;
+  margin: 4px;
+  cursor: pointer;
+  color: black;
+  user-select: none;  
 }
 .imagen-logo{
-  width: 70px;
+  width: 55px;
   cursor: pointer;
   user-select: none;
   border-radius: 10%;
@@ -88,20 +96,21 @@
 /* Navegacion */
 .nav-menu-horizontal{
   display:flex;
-  justify-content:space-around;
+  align-items: center;
+  justify-content:space-evenly;
   list-style:none;
 }
 
 .nav-menu-horizontal >li{
   display: block;
   padding: 3px 5px;
-  margin: 3px 0;
+  /* margin: 3px 0; */
   border-radius: 5px;
   user-select: none;
   text-decoration: none;
 }
 .nav-menu-horizontal >li:hover{
-  background-color: grey;
+  background-color: gray;
 }
 
 

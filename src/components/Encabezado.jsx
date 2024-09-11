@@ -63,7 +63,7 @@ function Encabezado() {
         </div>
 
         {/* Imagen con el nombre de la empresa */}
-        <div className="contendor-img-logo">
+        <div className="contenedor-img-logo">
           <Link to="/home">
             <img
               src={Logo}
@@ -72,7 +72,7 @@ function Encabezado() {
               alt="imagen-logo"
             />
           </Link>
-          <h1 className="titulo">Sistema de Inventarios L&M</h1>
+          <Link to="/home"><h1 className="titulo-sistema">Sistema de Inventarios L&M</h1></Link>
         </div>
       </div>
 
