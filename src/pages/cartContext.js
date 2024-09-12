@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect } from "react"; 
 
 // Crear el contexto para el carrito de compras
 const CartContext = createContext();
@@ -17,26 +17,43 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (producto) => {
-    setCart((prevCart) => [...prevCart, producto]);
+  // Agregar producto al carrito o aumentar cantidad si ya está
+  const agregarCarrito = (producto) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find(item => item.idProducto === producto.idProducto);
+      if (existingItem) {
+        return prevCart.map(item => 
+          item.idProducto === producto.idProducto 
+          ? { ...item, cantidad: item.cantidad + 1 } 
+          : item
+        );
+      } else {
+        return [...prevCart, { ...producto, cantidad: 1 }];
+      }
+    });
   };
 
-  const updateCartItemQuantity = (productoId, quantity) => {
-    setCart((prevCart) =>
-      prevCart.map((item) =>
-        item.id === productoId ? { ...item, quantity } : item
-      )
-    );
+  // Actualizar la cantidad de un producto específico en el carrito
+  const actualizarCantidadItemCarrito = (idProducto, quantity) => {
+    if (quantity === 0) {
+      setCart((prevCart) => prevCart.filter(item => item.idProducto !== idProducto));
+    } else {
+      setCart((prevCart) =>
+        prevCart.map((item) =>
+          item.idProducto === idProducto ? { ...item, cantidad: quantity } : item
+        )
+      );
+    }
   };
 
+  // Limpiar todo el carrito
   const clearCart = () => {
     setCart([]);
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, updateCartItemQuantity, clearCart }}>
+    <CartContext.Provider value={{ cart, agregarCarrito, actualizarCantidadItemCarrito, clearCart }}>
       {children}
     </CartContext.Provider>
   );
 };
-
