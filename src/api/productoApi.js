@@ -24,3 +24,13 @@ export const obtenerProductos = async () => {
     throw new Error(error.response ? error.response.data.message : error.message);
   }
 };
+
+// Restar/Quitar Productos del inventario
+export const restarProductos = async (idProducto, cantidad) => {
+  try {
+    const response = await axios.put(`${API_URL}/ventas`, { idProducto, cantidad });
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.message : error.message);
+  }
+};
