@@ -75,3 +75,33 @@
   background-color: whitesmoke; 
   transition: 0.5s;
 }
+
+/* Boton cantidad -/+ */
+.control-cantidad {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.control-cantidad button {
+  padding: 5px 10px;
+  width: 70px;
+  height: 35px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: chocolate;
+  border: none;
+  cursor: pointer;
+}
+.control-cantidad button:hover{
+  color: chocolate;
+  background-color: whitesmoke; 
+  transition: 0.5s; 
+}
+
+.control-cantidad span {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
