@@ -24,5 +24,7 @@ router.post('/registro-entrada/nuevo-producto', upload.single('imagen'), product
 //* Ruta para obtener productos
 router.get('/productos', productoController.obtenerProductos);
 
+//* Ruta para restar productos del inventario
+router.put('/ventas', productoController.restarProducto);
 
 module.exports = router;
