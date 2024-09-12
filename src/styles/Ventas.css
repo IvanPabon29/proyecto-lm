@@ -1,67 +1,120 @@
-/* Css Ventas */
-
+/* General styling for the sales section */
 #ventas {
-  background-image: url("../img/fondo-ventas.jpg");
-  background-color: transparent;
-  background-position: center center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  overflow: hidden;
-  width: 100%;
-  height: 100vh;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #f0f4f8, #cfd9df);
+  width: 100%;
+  min-height: 100vh;
+  padding: 30px;
 }
 
-/* Titulo */
-.contr-titulo-ventas{
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  margin-top: 2rem;
-  background-color:rgba(240, 255, 255, 0.5);
-  border-radius: 15px;
-  padding: 8px;
+/* Header for the sales page */
+.ventas-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
-.titulo-ventas{
+
+.ventas-title {
+  font-size: 3rem;
+  font-weight: bold;
   color: black;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Main container */
+.ventas-container {
+  width: 100%;
+  max-width: 800px;
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+/* List of products */
+.ventas-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ventas-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.producto-info {
+  flex-grow: 1;
+}
+
+.producto-nombre {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.producto-precio {
+  font-size: 1.1rem;
+  color: #777;
+}
+
+.producto-cantidad {
+  font-size: 1rem;
+  color: #999;
+}
+
+/* Empty cart message */
+.ventas-empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #999;
+  margin: 40px 0;
+}
+
+/* Footer with total and checkout button */
+.ventas-footer {
+  margin-top: 30px;
   text-align: center;
 }
 
-/* Contenedor ventas */
-.contenedor-ventas{
-  margin-top: 1rem;
-  width: 75%;
-  min-height: 70%;
-  border-radius: 15px;
-  background-color:rgba(240, 255, 255, 0.5);
+.ventas-total {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
 }
 
-/* Contenedor Boton */
-.contenedor-boton-ventas{
-  display: flex;
-  /* border: 1px solid black; */
-  justify-content: center;
-  margin-top: 38%;
-}
-.botones-ventas{
-  width: 150px;
-  height: 40px;
-  margin: 0px 2rem;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: darkslategray;
-  color: whitesmoke;
-  border-radius: 10px;
+/* Button to finalize the sale */
+.btn-finalizar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: 600;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-/* Hover boton */
-.botones-ventas:hover{
-  background-color: whitesmoke;
-  transition: .3s;
-  color: darkslategray;
+.btn-finalizar:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .ventas-container {
+    width: 90%;
+  }
+
+  .btn-finalizar {
+    padding: 12px 25px;
+  }
 }
