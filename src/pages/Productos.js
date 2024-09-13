@@ -40,6 +40,7 @@ function Productos() {
     agregarCarrito({
       idProducto: producto.id_producto,
       nombre: producto.nombre,
+      modelo: producto.modelo,
       precio: producto.precio,
     });
   };
