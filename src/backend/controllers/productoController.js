@@ -61,6 +61,27 @@ const productoController = {
       res.json(results);
     });
   },
+
+  // Controlador para Restar productos del inventario
+  restarProducto: (req, res) => {
+    const { idProducto, cantidad } = req.body;
+
+    const query = `
+        UPDATE registros_de_entrada 
+        SET cantidad = cantidad - ? 
+        WHERE id_producto = ?
+      `;
+
+    db.query(query, [cantidad, idProducto], (err, results) => {
+      if (err) {
+        console.error("Error al restar producto:", err.message);
+        return res
+          .status(500)
+          .send({ message: "Error al actualizar el inventario", error: err });
+      }
+      res.status(200).json({ message: "Inventario actualizado correctamente" });
+    });
+  },
 };
 
 module.exports = productoController;
