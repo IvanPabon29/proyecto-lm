@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/user');
 const proveedoresRoutes = require('./routes/proveedores'); 
 const productoRoutes = require('./routes/producto');
+const registrosRoutes = require('./routes/registros');
 
 
 // creamos el servidor con express
@@ -34,6 +35,8 @@ app.use('/api', proveedoresRoutes);
 // Ruta Producto
 app.use('/api', productoRoutes);
 
+// Usar la ruta de registros
+app.use('/api', registrosRoutes);
 
 // Puerto y mensaje
 const PORT = process.env.PORT || 3001;
