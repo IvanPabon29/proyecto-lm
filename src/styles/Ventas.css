@@ -1,4 +1,4 @@
-/* General styling for the sales section */
+/* Ventas Styles */
 #ventas {
   display: flex;
   flex-direction: column;
@@ -10,13 +10,13 @@
   padding: 30px;
 }
 
-/* Header for the sales page */
-.ventas-header {
+/* Header */
+.contr-titulo-ventas {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.ventas-title {
+.titulo-ventas {
   font-size: 3rem;
   font-weight: bold;
   color: black;
@@ -24,8 +24,8 @@
   letter-spacing: 1px;
 }
 
-/* Main container */
-.ventas-container {
+/* Contenedor Ventas */
+.contenedor-ventas {
   width: 100%;
   max-width: 800px;
   background-color: white;
@@ -34,7 +34,7 @@
   padding: 25px;
 }
 
-/* List of products */
+/* Productos */
 .ventas-list {
   list-style: none;
   padding: 0;
@@ -53,31 +53,12 @@
   flex-grow: 1;
 }
 
-.producto-nombre {
-  font-size: 1.2rem;
-  font-weight: 500;
+.producto-nombre, .producto-precio, .producto-cantidad, .producto-modelo {
+  font-size: 1rem;
   color: #555;
 }
 
-.producto-precio {
-  font-size: 1.1rem;
-  color: #777;
-}
-
-.producto-cantidad {
-  font-size: 1rem;
-  color: #999;
-}
-
-/* Empty cart message */
-.ventas-empty {
-  text-align: center;
-  font-size: 1.2rem;
-  color: #999;
-  margin: 40px 0;
-}
-
-/* Footer with total and checkout button */
+/* Footer */
 .ventas-footer {
   margin-top: 30px;
   text-align: center;
@@ -90,9 +71,8 @@
   margin-bottom: 20px;
 }
 
-/* Button to finalize the sale */
-.btn-finalizar {
-  background-color: #4CAF50;
+.boton-finalizar {
+  background-color: darkgreen;
   color: white;
   padding: 15px 35px;
   border-radius: 50px;
@@ -103,18 +83,18 @@
   transition: all 0.3s ease;
 }
 
-.btn-finalizar:hover {
-  background-color: #45a049;
+.boton-finalizar:hover {
+  background-color: darkgreen;
   transform: translateY(-2px);
 }
 
-/* Responsive design for smaller screens */
+/* Responsive */
 @media (max-width: 768px) {
   .ventas-container {
     width: 90%;
   }
 
-  .btn-finalizar {
+  .boton-finalizar {
     padding: 12px 25px;
   }
 }
