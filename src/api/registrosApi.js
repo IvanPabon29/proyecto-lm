@@ -15,3 +15,19 @@ export const registrarVenta = async (ventaData) => {
 };
 
 
+// Obtener los registros filtrados por fechas.
+export const obtenerRegistros = async (fechaInicio, fechaFin) => {
+  try {
+    const response = await axios.get(`${API_URL}/registros`, {
+      params: {
+        fechaInicio,
+        fechaFin,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener los registros:', error);
+    throw error;
+  }
+};
+
