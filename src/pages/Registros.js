@@ -7,6 +7,7 @@ function Registros() {
   const [fechaFin, setFechaFin] = useState("");
   const [registros, setRegistros] = useState([]);
 
+  // Manejar filtro de fechas
   const handleFiltrar = async () => {
     try {
       const registrosFiltrados = await obtenerRegistros(fechaInicio, fechaFin);
@@ -14,6 +15,12 @@ function Registros() {
     } catch (error) {
       console.error("Error al filtrar los registros:", error);
     }
+  };
+
+  // Formatea la fecha en formato (DD/MM/AA)
+  const formatFecha = (fecha) => {
+    const nuevaFecha = new Date(fecha);
+    return nuevaFecha.toLocaleDateString();
   };
 
   return (
@@ -44,44 +51,47 @@ function Registros() {
             onChange={(e) => setFechaFin(e.target.value)}
           />
 
-          <button onClick={handleFiltrar}>Filtrar</button>
+          <button className="boton-filtrar" onClick={handleFiltrar}>
+            Filtrar
+          </button>
         </div>
 
         {/* Tabla de registros */}
-        <table className="tabla">
-          <thead>
-            <tr>
-              <th>Id Producto</th>
-              <th>Nombre de Producto</th>
-              <th>Modelo</th>
-              <th>Fecha (DD/MM/AA)</th>
-              <th>Cantidad</th>
-              <th>Tipo Accion</th>
-            </tr>
-          </thead>
-          <tbody>
-            {registros.length > 0 ? (
-              registros.map((registro, index) => (
-                <tr key={index}>
-                  <td>{registro.id_producto}</td>
-                  <td>{registro.nombre}</td>
-                  <td>{registro.modelo}</td>
-                  <td>{new Date(registro.fecha).toLocaleDateString()}</td>
-                  <td>{registro.cantidad}</td>
-                  <td>{registro.tipo_accion}</td>
-                </tr>
-              ))
-            ) : (
+        <div className="tabla-container">
+          <table className="tabla">
+            <thead>
               <tr>
-                <td colSpan="5">No se encontraron registros</td>
+                <th>Id Producto</th>
+                <th className="col-nombre">Nombre de Producto</th>
+                <th className="col-modelo">Modelo</th>
+                <th>Fecha (DD/MM/AA)</th>
+                <th>Cantidad</th>
+                <th>Tipo Accion</th>
               </tr>
-            )}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {registros.length > 0 ? (
+                registros.map((registro, index) => (
+                  <tr key={index}>
+                    <td>{registro.id_producto}</td>
+                    <td>{registro.nombre}</td>
+                    <td>{registro.modelo}</td>
+                    <td>{formatFecha(registro.fecha_registro)}</td>
+                    <td>{registro.cantidad}</td>
+                    <td>{registro.tipo_accion}</td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="6">No se encontraron registros</td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   );
 }
 
 export default Registros;
-
