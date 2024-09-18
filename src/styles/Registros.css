@@ -1,13 +1,12 @@
-/* Css Registros */
-
-#registros{
+/* Estilos generales */
+#registros {
   background-image: url("../img/fondo-registro.jpg");
   background-color: transparent;
   background-position: center center;
-  background-size:cover;
+  background-size: cover;
   background-repeat: no-repeat;
   overflow: hidden;
-  width: 100%; 
+  width: 100%;
   height: 100vh;
   display: flex;
   justify-content: flex-start;
@@ -16,22 +15,23 @@
 }
 
 /* Titulo */
-.contr-titulo{
+.contr-titulo {
   display: flex;
   justify-content: center;
   align-items: flex-end;
   margin-top: 2rem;
-  background-color:rgba(240, 255, 255, 0.5);
+  background-color: rgba(240, 255, 255, 0.5);
   border-radius: 15px;
   padding: 8px;
 }
-.titulo-registro{
+
+.titulo-registro {
   color: black;
   text-align: center;
 }
 
-/* Contendor registros */
-.contenedor-list-registro{
+/* Contenedor registros */
+.contenedor-list-registro {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -40,42 +40,105 @@
   width: 70%;
   min-height: 70%;
   border-radius: 15px;
-  background-color:rgba(240, 255, 255, 0.5);
-}
-
-/* Tabla */
-.tabla{
-  margin-top: 1rem;
-  width: 90%;
-  border-collapse: collapse;
-  th, td{
-    padding: 10px;
-    border: 1px solid black;
-    text-align: center;
-    background-color:whitesmoke;
-  }
-  td{
-    height: 70px;
-  }
+  background-color: rgba(240, 255, 255, 0.5);
 }
 
 /* Contenedor de filtro */
-.contenedor-filtro{
+.contenedor-filtro {
   margin-top: 1rem;
   font-size: 1rem;
   font-weight: bold;
   text-align: center;
-  label{
-    margin: 0px 5px;
+  label {
+  margin: 0px 5px;
   }
-  input{
-    width: 130px;
-    height: 35px;
-    font-weight: bold;
+  input {
+  width: 130px;
+  height: 35px;
+  font-weight: bold;
   }
 }
-/* titulo filtrar */
-.t-filtrar{
+
+/* Titulo filtrar */
+.t-filtrar {
   margin: 5px 0px;
 }
+
+/* Botón filtrar */
+.boton-filtrar {
+  background-color: darkgreen;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.boton-filtrar:hover {
+  background-color: darkgreen;
+  transform: translateY(-2px);
+}
+
+
+/* Tabla */
+.tabla-container {
+  width: 90%;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-top: 1rem;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid black;
+  text-align: center;
+  background-color: whitesmoke;
+}
+
+td {
+  height: 70px;
+}
+
+/* Ancho personalizado para las columnas de nombre y modelo */
+.col-nombre {
+  width: 200px;
+}
+
+.col-modelo {
+  width: 200px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .contenedor-list-registro {
+    width: 90%;
+  }
+
+  .tabla-container {
+    width: 90%;
+  }
+
+  th, td {
+    font-size: 0.9rem;
+  }
+
+  .contenedor-filtro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .boton-filtrar {
+    width: 80%;
+    text-align: center;
+    margin-top: 10px;
+  }
+}
+
 
