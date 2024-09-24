@@ -35,7 +35,7 @@ app.use('/api', proveedoresRoutes);
 // Ruta Producto
 app.use('/api', productoRoutes);
 
-// Usar la ruta de registros
+// Ruta de registros
 app.use('/api', registrosRoutes);
 
 // Puerto y mensaje
