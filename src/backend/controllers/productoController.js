@@ -18,37 +18,74 @@ const productoController = {
     // URL IMAGEN
     const imagen = req.file ? `/uploads/${req.file.filename}` : null;
 
-    const query = `
-      INSERT INTO registros_de_entrada 
-      (imagen, id_proveedor, id_usuario, id_producto, nombre, modelo, descripcion, cantidad, precio)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `;
-
-    db.query(
-      query,
-      [
-        imagen,
-        idProveedor,
-        idUsuario,
-        idProducto,
-        nombre,
-        modelo,
-        descripcion,
-        cantidad,
-        precio,
-      ],
-      (err, results) => {
-        if (err) {
-
-          console.error("Error al registrar el producto:", err.message); // Verifica si hay errores en la consulta SQL
-
-          return res
-            .status(500)
-            .send({ message: "Error al registrar el producto", error: err });
-        }
-        res.status(201).json({ message: "Producto registrado exitosamente" });
+    // Comienza una transacción para asegurar consistencia entre la inserción en ambas tablas
+    db.beginTransaction((err) => {
+      if (err) {
+        return res.status(500).send({ message: "Error iniciando la transacción", error: err });
       }
-    );
+
+      const queryProducto = `
+        INSERT INTO registros_de_entrada 
+        (imagen, id_proveedor, id_usuario, id_producto, nombre, modelo, descripcion, cantidad, precio)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
+
+      // Primero se inserta el producto en la tabla de entrada
+      db.query(
+        queryProducto,
+        [
+          imagen,
+          idProveedor,
+          idUsuario,
+          idProducto,
+          nombre,
+          modelo,
+          descripcion,
+          cantidad,
+          precio,
+        ],
+        (err, results) => {
+          if (err) {
+            // Si hay un error, se revierte la transacción
+            return db.rollback(() => {
+              console.error("Error al registrar el producto:", err.message);
+              return res.status(500).send({ message: "Error al registrar el producto", error: err });
+            });
+          }
+
+          // Ahora registramos el ingreso en la tabla "registros"
+          const queryRegistro = `
+            INSERT INTO registros (id_producto, nombre, modelo, cantidad, tipo_accion)
+            VALUES (?, ?, ?, ?, ?)
+          `;
+
+          db.query(
+            queryRegistro,
+            [idProducto, nombre, modelo, cantidad, "ingreso"],
+            (err, results) => {
+              if (err) {
+                // Si hay un error en la segunda inserción, se revierte todo
+                return db.rollback(() => {
+                  console.error("Error al registrar el ingreso:", err.message);
+                  return res.status(500).send({ message: "Error al registrar el ingreso", error: err });
+                });
+              }
+
+              // Si todo va bien, se confirma la transacción
+              db.commit((err) => {
+                if (err) {
+                  return db.rollback(() => {
+                    console.error("Error al hacer commit:", err.message);
+                    return res.status(500).send({ message: "Error al confirmar la transacción", error: err });
+                  });
+                }
+                res.status(201).json({ message: "Producto e ingreso registrados exitosamente" });
+              });
+            }
+          );
+        }
+      );
+    });
   },
 
   // Controlador para obtener todos los productos.
