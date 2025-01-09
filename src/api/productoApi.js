@@ -15,6 +15,27 @@ export const registrarProducto = async (formData) => {
   }
 };
 
+// Obtener producto por ID
+export const buscarProductoPorId = async (idProducto) => {
+  try {
+    console.log(`ID del producto antes de la solicitud: ${idProducto}`);
+    const response = await axios.get(`${API_URL}/registro-entrada/producto-existente/${idProducto}`);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.message : error.message);
+  }
+};
+
+// Actualizar un producto existente y registrar la entrada
+export const actualizarProductoYRegistrarEntrada = async (productoModificado) => {
+  try {
+    const response = await axios.put(`${API_URL}/registro-entrada/producto-existente`, productoModificado);
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response ? error.response.data.message : error.message);
+  }
+};
+
 // Obtener Productos 
 export const obtenerProductos = async () => {
   try {
