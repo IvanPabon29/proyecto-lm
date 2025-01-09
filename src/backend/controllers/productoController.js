@@ -88,6 +88,69 @@ const productoController = {
     });
   },
 
+  // Controlador para obtener producto por ID
+  obtenerProductoPorId: (req, res) => {
+    const idProducto = req.params.idProducto;
+
+    const query = 'SELECT * FROM registros_de_entrada WHERE id_producto = ?';
+    db.query(query, [idProducto], (err, results) => {
+      if (err) {
+        return res.status(500).send({ message: 'Error al buscar producto por ID', error: err });
+      }
+      if (results.length === 0) {
+        return res.status(404).send({ message: 'Producto no encontrado' });
+      }
+      res.status(200).send(results[0]);
+    });
+  },
+
+  // Controlador para actualizar producto existente y registrar entrada
+  actualizarProductoYRegistrarEntrada: (req, res) => {
+    const { idProducto, idUsuario, idProveedor, nombre, modelo, descripcion, cantidadAdicional, precio } = req.body;
+
+    db.beginTransaction((err) => {
+      if (err) {
+        return res.status(500).send({ message: 'Error iniciando la transacción', error: err });
+      }
+
+      // Actualizar el producto en registros_de_entrada
+      const updateQuery = `
+        UPDATE registros_de_entrada
+        SET nombre = ?, modelo = ?, descripcion = ?, cantidad = cantidad + ?, precio = ?
+        WHERE id_producto = ?
+      `;
+      db.query(updateQuery, [nombre, modelo, descripcion, cantidadAdicional, precio, idProducto], (err, results) => {
+        if (err) {
+          return db.rollback(() => {
+            res.status(500).send({ message: 'Error al actualizar el producto', error: err });
+          });
+        }
+
+        // Crear registro en la tabla registros
+        const insertQuery = `
+          INSERT INTO registros (id_producto, nombre, modelo, cantidad, tipo_accion)
+          VALUES (?, ?, ?, ?, 'ingreso')
+        `;
+        db.query(insertQuery, [idProducto, nombre, modelo, cantidadAdicional], (err, results) => {
+          if (err) {
+            return db.rollback(() => {
+              res.status(500).send({ message: 'Error al crear el registro', error: err });
+            });
+          }
+
+          db.commit((err) => {
+            if (err) {
+              return db.rollback(() => {
+                res.status(500).send({ message: 'Error al finalizar la transacción', error: err });
+              });
+            }
+            res.status(200).send({ message: 'Producto actualizado y registro agregado con éxito' });
+          });
+        });
+      });
+    });
+  },
+
   // Controlador para obtener todos los productos.
   obtenerProductos: (req, res) => {
     const query = "SELECT * FROM registros_de_entrada";
