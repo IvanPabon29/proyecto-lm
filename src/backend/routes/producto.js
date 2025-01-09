@@ -21,6 +21,12 @@ const upload = multer({ storage: storage });
 //* Ruta para registrar productos
 router.post('/registro-entrada/nuevo-producto', upload.single('imagen'), productoController.agregarProducto);
 
+//* Ruta para buscar producto por ID
+router.get("/registro-entrada/producto-existente/:idProducto", productoController.obtenerProductoPorId);
+
+//* Ruta para actualizar producto existente y registrar entrada
+router.put("/registro-entrada/producto-existente", productoController.actualizarProductoYRegistrarEntrada);
+
 //* Ruta para obtener productos
 router.get('/productos', productoController.obtenerProductos);
 
