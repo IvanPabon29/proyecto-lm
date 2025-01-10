@@ -1,138 +1,110 @@
 import "../styles/AgregarExistente.css";
+import React, { useState } from "react";
+import { buscarProductoPorId, actualizarProductoYRegistrarEntrada } from "../api/productoApi";
 
 function AgregarExistente() {
-  /*Esto Se puede Hacer mas facil reutilizando el component de AGREGAR NUEVO, 
-  ya que si se puede agregar un el elmento dentro del ELEMENTO utilizando (Children) 
-  El buscar se puede crear aparte y reutilizarlo*/
+  const [idProducto, setIdProducto] = useState("");
+  const [producto, setProducto] = useState(null);
+  const [cantidadAdicional, setCantidadAdicional] = useState(0);
+
+  // Handler para buscar producto por ID
+  const handleBuscarProducto = async (e) => {
+    e.preventDefault();
+    if (!idProducto) {
+      console.error("El ID del producto es necesario para buscar.");
+      return;
+    }
+    try {
+      const productoEncontrado = await buscarProductoPorId(idProducto);
+      setProducto(productoEncontrado);
+    } catch (error) {
+      console.error("Error al buscar el producto:", error);
+    }
+  };
+
+  // Handler para actualizar el producto y registrar la entrada
+  const handleActualizarProducto = async (e) => {
+    e.preventDefault();
+    try {
+      await actualizarProductoYRegistrarEntrada({
+        ...producto,
+        cantidadAdicional,
+      });
+      alert("Producto actualizado y registro agregado con éxito");
+      // Resetear el formulario
+      setProducto(null);
+      setIdProducto("");
+      setCantidadAdicional(0);
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+    }
+  };
 
   return (
     <section id="registro-entrada-existente">
-
-      {/* Form de busqueda */}
-      <form className="form-buscar">
-
-        <label htmlFor="buscar">Buscar Producto:</label>
-        <input type="search"id="buscar" placeholder="Buscar por ID/Nombre" name="buscar-producto" />
-
-        <button className="boton-search">Buscar</button>
-
-      </form>
-
-      {/* Formulario para los productos */}
-      <form className="form-entrada-existente">
-        <fieldset>
-          <legend>
-            <strong>Registro de productos Existentes</strong>
-          </legend>
-
-          <label htmlFor="imagen">Seleccione la Imagen:</label>
-          <input
-            type="file"
-            accept=".jpg,.png,.svg"
-            id="imagen"
-            name="imagen-producto"
-            required
-          />
-
-          <br />
-
-          <label htmlFor="proveedor">Id Proveedor:</label>
+      <div>
+        {/* Formulario de búsqueda */}
+        <form className="form-buscar" onSubmit={handleBuscarProducto}>
+          <label htmlFor="buscar">Buscar Producto:</label>
           <input
             type="text"
-            id="proveedor"
-            placeholder="Ingrese el Id"
-            name="id-proveedor"
+            id="buscar"
+            placeholder="Buscar por ID"
+            value={idProducto}
+            onChange={(e) => setIdProducto(e.target.value)}
             required
           />
+          <button type="submit" className="boton-search">
+            Buscar
+          </button>
+        </form>
 
-          <label htmlFor="usuario">Id Usuario:</label>
-          <input
-            type="text"
-            id="usuario"
-            placeholder="Ingrese el Id"
-            name="id-usuario"
-            required
-          />
-
-          <br />
-
-          <label htmlFor="producto">Id Producto:</label>
-          <input
-            type="text"
-            id="producto"
-            placeholder="#"
-            name="id-producto"
-            required
-          />
-
-          <label htmlFor="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            placeholder="Nombre del producto"
-            name="nombre-producto"
-            required
-          />
-
-          <br />
-
-          <label htmlFor="modelo">Modelo:</label>
-          <input
-            type="text"
-            id="modelo"
-            placeholder="Ingrese el Modelo"
-            name="modelo-producto"
-            required
-          />
-
-          <label htmlFor="descripcion">Descripcion:</label>
-          <textarea
-            type="text"
-            id="descripcion"
-            placeholder="Descripcion del Producto"
-            name="des-producto"
-            required
-          />
-
-          <br />
-
-          <label htmlFor="cantidad">Cantidad:</label>
-          <input
-            type="number"
-            id="cantidad"
-            placeholder="Ingrese la cantidad"
-            name="cantidad"
-            required
-          />
-
-          <label htmlFor="precio">Precio:</label>
-          <input
-            type="number"
-            id="precio"
-            placeholder="Precio unidad"
-            name="precio-unidad"
-            required
-          />
-
-          <div className="contenedor-botones-entrada">
-            <button
-              type="reset"
-              className="botones-entrada boton-reset"
-              value="Limpiar"
-            >
-              Limpiar
-            </button>
-
-            <button
-              type="submit"
-              className="botones-entrada boton-submit"
-              value="Registrar"
-            >
-              Registrar
-            </button>
-          </div>
-        </fieldset>
-      </form>
+        {/* Formulario de actualización */}
+        {producto && (
+          <form onSubmit={handleActualizarProducto} className="form-actualizar">
+            {/* <input type="text" value={producto.idProducto} readOnly /> */}
+            <input
+              type="text"
+              value={producto.nombre}
+              onChange={(e) =>
+                setProducto({ ...producto, nombre: e.target.value })
+              }
+              required
+            />
+            <input
+              type="text"
+              value={producto.modelo}
+              onChange={(e) =>
+                setProducto({ ...producto, modelo: e.target.value })
+              }
+              required
+            />
+            <textarea
+              value={producto.descripcion}
+              onChange={(e) =>
+                setProducto({ ...producto, descripcion: e.target.value })
+              }
+              required
+            />
+            <input
+              type="number"
+              value={producto.precio}
+              onChange={(e) =>
+                setProducto({ ...producto, precio: e.target.value })
+              }
+              required
+            />
+            <input
+              type="number"
+              placeholder="Cantidad a agregar"
+              value={cantidadAdicional}
+              onChange={(e) => setCantidadAdicional(Number(e.target.value))}
+              required
+            />
+            <button type="submit" className="btn-actualizar">Actualizar Producto</button>
+          </form>
+        )}
+      </div>
     </section>
   );
 }
